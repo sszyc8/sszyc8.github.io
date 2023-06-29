@@ -16,17 +16,21 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta property="og:type" content="website">
-<meta property="og:title" content="Archives">
-<meta property="og:url" content="https://sszyc8.github.io/archives/2023/index.html">
+    <meta name="description" content="posts介绍 使用Go-gin开发的md解析博客。 沉浸式写作，Git读取部署。  规范说明 文件名：格式为日期-名称，例如2020-02-02-第一篇笔记 资源名：统一放在res下，子目录名称与所引用的md文件名一致，例如res&#x2F;2020-02-02-第一篇笔记&#x2F;xx.png 文章头：  1234567&lt;!-- 发布状态 : 是 --&gt;&lt;!-- 文章ID : 时间作为文章ID">
+<meta property="og:type" content="website">
+<meta property="og:title" content="page.title">
+<meta property="og:url" content="https://sszyc8.github.io/README.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="posts介绍 使用Go-gin开发的md解析博客。 沉浸式写作，Git读取部署。  规范说明 文件名：格式为日期-名称，例如2020-02-02-第一篇笔记 资源名：统一放在res下，子目录名称与所引用的md文件名一致，例如res&#x2F;2020-02-02-第一篇笔记&#x2F;xx.png 文章头：  1234567&lt;!-- 发布状态 : 是 --&gt;&lt;!-- 文章ID : 时间作为文章ID">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-06-29T09:58:45.085Z">
+<meta property="article:modified_time" content="2022-09-19T09:36:15.741Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>Archives - Hexo</title>
+  <title>page.title - Hexo</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -186,7 +190,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Archives"></span>
+            <span id="subtitle" data-typed-text="page.title"></span>
           
         </div>
 
@@ -213,23 +217,34 @@
               <div class="col-12 col-md-10 m-auto">
                 
 
-<div class="list-group">
-  <p class="h4">6 posts in total</p>
-  <hr>
-  
-  
-    
-      
-      <p class="h5">2023</p>
-    
-    <a href="/1a4bc7b4e906/" class="list-group-item list-group-item-action">
-      <time>06-27</time>
-      <div class="list-group-item-title">Hello World</div>
-    </a>
-  
-</div>
+<article class="page-content">
+  <h1 id="posts"><a href="#posts" class="headerlink" title="posts"></a>posts</h1><h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><ul>
+<li>使用Go-gin开发的md解析博客。</li>
+<li>沉浸式写作，Git读取部署。</li>
+</ul>
+<h2 id="规范说明"><a href="#规范说明" class="headerlink" title="规范说明"></a>规范说明</h2><ul>
+<li>文件名：格式为<code>日期-名称</code>，例如<code>2020-02-02-第一篇笔记</code></li>
+<li>资源名：统一放在res下，子目录名称与所引用的md文件名一致，例如<code>res/2020-02-02-第一篇笔记/xx.png</code></li>
+<li>文章头：</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- 发布状态 : 是 --&gt;</span><br><span class="hljs-comment">&lt;!-- 文章ID : 时间作为文章ID --&gt;</span><br>* 标题 : `第一篇笔记`<br>* 分类 : `其他`<br>* 标签 : `other1 | other2`<br>* 创建时间 : `2020-02-02`<br>* 简介 : `这里是DogBlog第一篇笔记，记录着学习中的点点滴滴...`<br></code></pre></td></tr></table></figure>
+<ol>
+<li>第一行文章发表状态，否&#x2F;不发表、是&#x2F;发表。</li>
+<li>第二行文章ID，后期通过这个ID会实现评论以及其他工呢。</li>
+<li>第三行文章标题。</li>
+<li>第四行文章分类。</li>
+<li>第五行文章标签，通过<code>|</code>来区分多个标签。</li>
+<li>第六行创建时间。</li>
+<li>第七行文章的简介。</li>
+</ol>
+<h2 id="使用说明"><a href="#使用说明" class="headerlink" title="使用说明"></a>使用说明</h2><ul>
+<li>配置<code>app/conf/basic.yml</code></li>
+</ul>
 
 
+  
+
+</article>
 
 
 
