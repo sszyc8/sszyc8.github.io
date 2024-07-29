@@ -1,0 +1,844 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="s2">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="在Mac上通过配置Jenkins为来为Unity工程导出AAR，并且通过Jenkins导出APK">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mac上配置Jenkins为Unity导出AAR、APK">
+<meta property="og:url" content="https://www.sszyc8.com/72419b73d728/index.html">
+<meta property="og:site_name" content="s2">
+<meta property="og:description" content="在Mac上通过配置Jenkins为来为Unity工程导出AAR，并且通过Jenkins导出APK">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.sszyc8.com/res/2020-10-19-Mac%E4%B8%8A%E9%85%8D%E7%BD%AEJenkins%E4%B8%BAUnity%E5%AF%BC%E5%87%BAAAR%E3%80%81APK/0.gif">
+<meta property="article:published_time" content="2024-05-13T07:01:01.838Z">
+<meta property="article:modified_time" content="2024-05-13T07:01:01.838Z">
+<meta property="article:author" content="s2">
+<meta property="article:tag" content="Jenkins">
+<meta property="article:tag" content="AAR">
+<meta property="article:tag" content="APK">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://www.sszyc8.com/res/2020-10-19-Mac%E4%B8%8A%E9%85%8D%E7%BD%AEJenkins%E4%B8%BAUnity%E5%AF%BC%E5%87%BAAAR%E3%80%81APK/0.gif">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>Mac上配置Jenkins为Unity导出AAR、APK - s2</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"www.sszyc8.com","root":"/","version":"1.9.8","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"gtag":null,"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Net</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">Mac上配置Jenkins为Unity导出AAR、APK</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        s2
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-05-13 15:01" pubdate>
+          2024年5月13日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          17 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Mac上配置Jenkins为Unity导出AAR、APK</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <hr>
+<!-- 发布状态: 是 -->
+<!-- 文章ID: 1603036800 -->
+<ul>
+<li>标题: <code>Mac上配置Jenkins为Unity导出AAR、APK</code></li>
+<li>分类: <code>Unity</code></li>
+<li>标签: <code>Jenkins</code> | <code>AAR</code> | <code>APK</code></li>
+<li>创建时间: <code>2020-10-19</code></li>
+<li>简介: <code>在Mac上通过配置Jenkins为来为Unity工程导出AAR，并且通过Jenkins导出APK</code></li>
+</ul>
+<hr>
+<h1 id="Mac上配置Jenkins为Unity导出AAR打包APK"><a href="#Mac上配置Jenkins为Unity导出AAR打包APK" class="headerlink" title="Mac上配置Jenkins为Unity导出AAR打包APK"></a>Mac上配置Jenkins为Unity导出AAR打包APK</h1><blockquote>
+<p>最终要达到的效果是 使用Jenkins导出AAR，并且导出APk，其中app中主要的功能为在已有Android中调用AAR，使Andorid原生与Unity的Activity切换。</p>
+</blockquote>
+<p>最终效果</p>
+<p><img src="/../res/2020-10-19-Mac%E4%B8%8A%E9%85%8D%E7%BD%AEJenkins%E4%B8%BAUnity%E5%AF%BC%E5%87%BAAAR%E3%80%81APK/0.gif" srcset="/img/loading.gif" lazyload></p>
+<h2 id="为Mac安装、配置Jenkins"><a href="#为Mac安装、配置Jenkins" class="headerlink" title="为Mac安装、配置Jenkins"></a>为Mac安装、配置Jenkins</h2><h3 id="下载启动-Jenkins"><a href="#下载启动-Jenkins" class="headerlink" title="下载启动 Jenkins"></a>下载启动 Jenkins</h3><blockquote>
+<p>官网上描述推荐使用<code>Homebrew</code>来安装。因此这篇笔记使用的<code>Homebrew</code>来安装。</p>
+</blockquote>
+<ol>
+<li><del>使用该命令安装最新版本 <code>brew install jenkins-lts</code>，也可以在指定版本号来安装<code>brew install jenkins-lts@YOUR_VERSION</code>（下载太慢了）</del></li>
+<li>改为使用war包通过Java来启动<code>java -jar jenkins.war --ajp13Port=-1 --httpPort=8080</code> 在在浏览器输入<code>http://localhost:8080</code>来访问。</li>
+</ol>
+<h3 id="首次启动-Jenkins"><a href="#首次启动-Jenkins" class="headerlink" title="首次启动 Jenkins"></a>首次启动 Jenkins</h3><ol>
+<li>安装会遇到提示 “解锁Jenkins” 这里再终端使用<code>cat /Users/sszyc8/.jenkins/secrets/initialAdminPassword</code>来查看密码。</li>
+<li>选择插件安装，这里了选择<code>安装推荐的插件</code>进行下一步操作，等待完成。</li>
+<li>创建一个管理员账号。</li>
+<li>配置完成进入到主界面，至此Jenkins安装配置结束。</li>
+</ol>
+<p><img src="/../res/2020-10-19-Mac%E4%B8%8A%E9%85%8D%E7%BD%AEJenkins%E4%B8%BAUnity%E5%AF%BC%E5%87%BAAAR%E3%80%81APK/1.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="创建一个用于测试的Unity工程"><a href="#创建一个用于测试的Unity工程" class="headerlink" title="创建一个用于测试的Unity工程"></a>创建一个用于测试的Unity工程</h2><h3 id="UI布局图"><a href="#UI布局图" class="headerlink" title="UI布局图"></a>UI布局图</h3><p><img src="/../res/2020-10-19-Mac%E4%B8%8A%E9%85%8D%E7%BD%AEJenkins%E4%B8%BAUnity%E5%AF%BC%E5%87%BAAAR%E3%80%81APK/2.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="编写Edior扩展来导出Andorid项目"><a href="#编写Edior扩展来导出Andorid项目" class="headerlink" title="编写Edior扩展来导出Andorid项目"></a>编写Edior扩展来导出Andorid项目</h3><p>示例：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs go">using System;<br>using System.IO;<br>using UnityEditor;<br><br>public class BuildEditor<br>&#123;<br>    private static <span class="hljs-type">string</span> releasePath = Environment.CurrentDirectory + <span class="hljs-string">&quot;/Release/AndroidRelease&quot;</span>;<br><br>    [MenuItem(@<span class="hljs-string">&quot;Build/Export Android Project&quot;</span>)]<br>    private static void RunBuildAndroid()<br>    &#123;<br>        BuildAndroid();<br>    &#125;<br><br>    <span class="hljs-comment">// Jenkins调用</span><br>    public static void JenkinsBuildAndroid()<br>    &#123;<br>        BuildAndroid();<br>    &#125;<br><br>    private static void BuildAndroid() &#123;<br>        EditorUserBuildSettings.SwitchActiveBuildTarget(BuildTargetGroup.Android, BuildTarget.Android);<br>        EditorUserBuildSettings.androidBuildType = AndroidBuildType.Release;<br>        EditorUserBuildSettings.androidBuildSystem = AndroidBuildSystem.Gradle;<br>        EditorUserBuildSettings.exportAsGoogleAndroidProject = <span class="hljs-literal">true</span>;<br>        PlayerSettings.defaultInterfaceOrientation = UIOrientation.Portrait;<br>        <span class="hljs-type">string</span>[] scenes = &#123; <span class="hljs-string">&quot;Assets/Scenes/SampleScene.unity&quot;</span> &#125;;<br><br>        FileUtil.DeleteFileOrDirectory(releasePath);<br>        Directory.CreateDirectory(releasePath);<br><br>        BuildPipeline.BuildPlayer(scenes, releasePath, BuildTarget.Android, BuildOptions.AcceptExternalModificationsToPlayer);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>到此不出意外的话通过菜单栏<code>Build/Export Android Project</code>可以导出一个Android工程，这个Andorid工程路径就在<code>Unity工程/Release/AndroidRelease/</code>路径下。</p>
+<blockquote>
+<p>注意：因为目标是通过已有的Android工程切换到导出的AAR中Activity，Unity导出的Andorid工程中<code>AndroidManifest.xml</code>里指名了主activity的启动，所以我们需要使用自定<code>AndroidManifest.xml</code>，将表示作为主activity启动的代码代码清掉，得到下面这段<code>AndroidManifest.xml </code></p>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version=<span class="hljs-string">&quot;1.0&quot;</span> encoding=<span class="hljs-string">&quot;utf-8&quot;</span>?&gt;</span><br><span class="hljs-comment">&lt;!-- GENERATED BY UNITY. REMOVE THIS COMMENT TO PREVENT OVERWRITING WHEN EXPORTING AGAIN--&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">manifest</span> <span class="hljs-attr">xmlns:android</span>=<span class="hljs-string">&quot;http://schemas.android.com/apk/res/android&quot;</span> <span class="hljs-attr">package</span>=<span class="hljs-string">&quot;com.unity3d.player&quot;</span> <span class="hljs-attr">xmlns:tools</span>=<span class="hljs-string">&quot;http://schemas.android.com/tools&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">application</span> <span class="hljs-attr">android:isGame</span>=<span class="hljs-string">&quot;true&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">activity</span> <span class="hljs-attr">android:name</span>=<span class="hljs-string">&quot;com.unity3d.player.UnityPlayerActivity&quot;</span> <span class="hljs-attr">android:theme</span>=<span class="hljs-string">&quot;@style/UnityThemeSelector&quot;</span> <span class="hljs-attr">android:screenOrientation</span>=<span class="hljs-string">&quot;portrait&quot;</span> <span class="hljs-attr">android:launchMode</span>=<span class="hljs-string">&quot;singleTask&quot;</span> <span class="hljs-attr">android:configChanges</span>=<span class="hljs-string">&quot;mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|uiMode|screenSize|smallestScreenSize|fontScale|layoutDirection|density&quot;</span> <span class="hljs-attr">android:hardwareAccelerated</span>=<span class="hljs-string">&quot;false&quot;</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">meta-data</span> <span class="hljs-attr">android:name</span>=<span class="hljs-string">&quot;unityplayer.UnityActivity&quot;</span> <span class="hljs-attr">android:value</span>=<span class="hljs-string">&quot;true&quot;</span> /&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">activity</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">application</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">manifest</span>&gt;</span><br><br></code></pre></td></tr></table></figure>
+
+<p>至此，基于测试的Unity工程就完成了，将它传到Git上，接下来配置Jenkins。</p>
+<h2 id="Jenkins配置自动打包工作流AAR"><a href="#Jenkins配置自动打包工作流AAR" class="headerlink" title="Jenkins配置自动打包工作流AAR"></a>Jenkins配置自动打包工作流AAR</h2><h3 id="先配置通过Jenkins导出Unity-AAR。"><a href="#先配置通过Jenkins导出Unity-AAR。" class="headerlink" title="先配置通过Jenkins导出Unity AAR。"></a>先配置通过Jenkins导出Unity AAR。</h3><h4 id="新建一个工作流"><a href="#新建一个工作流" class="headerlink" title="新建一个工作流"></a>新建一个工作流</h4><ol>
+<li>从左侧侧边栏中选择<code>新建Item</code>。</li>
+<li>输入工作流名称。</li>
+<li>这里我们选择<code>Freestyle project</code>。</li>
+<li>最后 确定 完成。</li>
+</ol>
+<p><img src="/../res/2020-10-19-Mac%E4%B8%8A%E9%85%8D%E7%BD%AEJenkins%E4%B8%BAUnity%E5%AF%BC%E5%87%BAAAR%E3%80%81APK/3.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="配置工作流"><a href="#配置工作流" class="headerlink" title="配置工作流"></a>配置工作流</h4><p>1、General选项卡</p>
+<p>因为要选择Unity Git仓库分支，要展示分支列表，所以这里要先添加<code>Git Parameter</code>，它在 <code>General &gt; 勾选This project is parameterized &gt; 添加参数 &gt; Git Parameter</code>，配置如图：</p>
+<p><img src="/../res/2020-10-19-Mac%E4%B8%8A%E9%85%8D%E7%BD%AEJenkins%E4%B8%BAUnity%E5%AF%BC%E5%87%BAAAR%E3%80%81APK/4.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p>首先要注意若不到<code>Git Parameter</code>选项，可以通过插件包安装，它在<code>首页左侧侧边栏 &gt; Manage Jenkins &gt; Manage Plugins</code>下搜索<code>Git Parameter Plug-In</code>来安装即可，再回来添加<code>Git Parameter</code>既可找到。</p>
+<p>下面的笔记中若是有同样的选项找不到，都可在<code>Manage Plugins</code>搜索安装。</p>
+<p>其次要注意这里 <code>已选仓库</code>  这是用来与Git分支列表和仓库关联，接下来就链接Git仓库。</p>
+</blockquote>
+<p>2、源码管理选项卡</p>
+<p>这里要设置Git参数，它在<code>源码管理 &gt; 选择Multiple SCMs &gt; Git</code>，配置如图：</p>
+<p><img src="/../res/2020-10-19-Mac%E4%B8%8A%E9%85%8D%E7%BD%AEJenkins%E4%B8%BAUnity%E5%AF%BC%E5%87%BAAAR%E3%80%81APK/5.png" srcset="/img/loading.gif" lazyload></p>
+<p>参数说明：<a target="_blank" rel="noopener" href="https://plugins.jenkins.io/git/">https://plugins.jenkins.io/git/</a></p>
+<ol>
+<li><code>Repository URL</code> Git地址。 上一步骤中<code>Git Parameter</code>参数下的<code>已选仓库</code>要与它一致。姑且把它理解为<code>Git Parameter</code>用来把这个<code>Repository URL</code>仓库的分支列表显示出来。</li>
+<li><code>Credentials</code> Git的认证选项。</li>
+<li><code>Check out to a sub-director</code> 源码下载到的指定目录。</li>
+<li><code>Clean before checkout</code> 下拉代码前先清理，比如清理一些编译后的缓存文件。</li>
+<li><code>Advanced clone behaviours</code> 姑且理解为节约下载时间和内存空间。</li>
+</ol>
+<p>3、构建选项卡</p>
+<p>这里要设置Jenkins调用Unity C#代码，需要集成Unity插件<code>Invoke Unity3d Editor</code>，外加一些shll。</p>
+<p><img src="/../res/2020-10-19-Mac%E4%B8%8A%E9%85%8D%E7%BD%AEJenkins%E4%B8%BAUnity%E5%AF%BC%E5%87%BAAAR%E3%80%81APK/6.png" srcset="/img/loading.gif" lazyload></p>
+<ol>
+<li><code>Invoke Unity3d Editor</code> 选择对应的Unity版本，用Unity命令来调用unityC#，参考这里 <a target="_blank" rel="noopener" href="https://plugins.jenkins.io/unity3d-plugin/">unity3d-plugin</a>。</li>
+<li><code>Execite shell</code> 第一段shell脚本利用gradle命令来把导出的Android工程打包成AAR包，参考这里<a target="_blank" rel="noopener" href="https://docs.gradle.org/current/userguide/command_line_interface.html">Command-Line Interface</a>。</li>
+<li><code>Execite shell</code> 第二段shell脚本，用于临时测试，把导出的AAR包传输文件服务器上，输入下载地址。</li>
+</ol>
+<blockquote>
+<p>这里需要注意，安装完<code>Invoke Unity3d Editor</code>后，需要配置当前机器上安装的unity路径。它在这里配置<code>首页左侧侧边栏 &gt; Manage Jenkins &gt; Global Tool Configuration</code>下找到<code>Unity3d</code>来配置即可，再回来既可找到对应的版本。</p>
+</blockquote>
+<p>保存，返回到首页，进入到Jenkins项目选择侧边栏<code>Build with Parameters</code>，选择的Unity的Git分支，开始构建，等待结束。<br>到这里Jenkin导出Unity工程AAR就完成了，下面先验证AAR是否可用，再做Jenkins导出apk操作。</p>
+<h2 id="创建一个用于测试的Android工程"><a href="#创建一个用于测试的Android工程" class="headerlink" title="创建一个用于测试的Android工程"></a>创建一个用于测试的Android工程</h2><p>用AndroidStudio创建一个项目，在启动的主Activity中增加一个按钮，点击按钮切换到Unityde Activity。</p>
+<ol>
+<li>将Jenkins导出的AAR拷贝到<code>app/libs</code>下。</li>
+<li>修改app下的<code>build.gradle</code>增加以下代码：</li>
+</ol>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs gradle"><span class="hljs-keyword">repositories</span>&#123;<span class="hljs-keyword">flatDir</span>&#123;dirs <span class="hljs-string">&#x27;libs&#x27;</span>&#125;&#125;<br><span class="hljs-keyword">dependencies</span> &#123;<br>    .....<br>    <span class="hljs-keyword">compile</span> (name:<span class="hljs-string">&#x27;unityLibrary-release&#x27;</span>,ext:<span class="hljs-string">&#x27;aar&#x27;</span>) <span class="hljs-comment">// unityLibrary-release 为aar名称</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>至此以及集成完成，下面处理按钮逻辑。</p>
+<ol>
+<li>点击按钮直接从Android原生切换到<code>UnityPlayerActivity</code>。<code>UnityPlayerActivity </code>为AAR中的Activity。不出意外点击按钮直接可以切换到Unity的Activity中。</li>
+<li>从效果图里看到，在Unity的Activity中也切回Android原生，下面有2种方法：<ol>
+<li>自定义Unity Activity入口，这里可以新建一个<code>UnityActivity.Java</code>，继承<code>Activity</code>并且实现<code>IUnityPlayerLifecycleEvents</code>接口。</li>
+<li>还可以新建一个<code>UnityActivity.Java</code>，直接继承AAR中的<code>UnityPlayerActivity</code>.</li>
+</ol>
+</li>
+<li>上面这2种方式都需要新建一个Activity，别忘记XML中对应的配置。这里先选择第2种方式来切换到Unity，下面是2个Activity代码。</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// MainActivity.java</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MainActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">AppCompatActivity</span> &#123;<br><br>    <span class="hljs-meta">@Override</span> <span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">onCreate</span><span class="hljs-params">(Bundle savedInstanceState)</span> &#123;<br>        <span class="hljs-built_in">super</span>.onCreate(savedInstanceState);<br>        setContentView(R.layout.activity_main);<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">OnClickChangeUnity</span><span class="hljs-params">(View view)</span>&#123;<br>        <span class="hljs-type">Intent</span> <span class="hljs-variable">intent</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Intent</span>();<br>        intent.setClass(MainActivity.<span class="hljs-built_in">this</span>, UnityActivity.class);<br>        startActivity(intent);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// UnityActivity.java</span><br><span class="hljs-keyword">import</span> com.unity3d.player.UnityPlayerActivity;<br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">UnityActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">UnityPlayerActivity</span>&#123;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> UnityActivity currentActivity=<span class="hljs-literal">null</span>;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">onCreate</span><span class="hljs-params">(Bundle savedInstanceState)</span><br>    &#123;<br>        <span class="hljs-built_in">super</span>.onCreate(savedInstanceState);<br>        currentActivity = <span class="hljs-built_in">this</span>;<br>    &#125;<br><br>     <span class="hljs-comment">/** 提供给Unity调用 **/</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">ChangeAndroid</span><span class="hljs-params">()</span>&#123;<br>        <span class="hljs-type">Intent</span> <span class="hljs-variable">intent</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Intent</span>();<br>        intent.setClass(UnityActivity.<span class="hljs-built_in">this</span>, MainActivity.class); <br>        startActivity(intent);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>运行就可以看到开头的效果了，接下来提交Android工程，在回到Jenkins，在利用Jenkins打包apk。</p>
+<h2 id="Jenkins配置自动打包工作流APK"><a href="#Jenkins配置自动打包工作流APK" class="headerlink" title="Jenkins配置自动打包工作流APK"></a>Jenkins配置自动打包工作流APK</h2><p>回到Jenkins，上面Jenkins的有段shll写到临时下载AAR。下面就不手动下载了，改为通过Jenkins的Git操作直接将AAR上传到Android工程，然后在实现打包APK。<br>打开之前配置好的Jenkins工程，选择侧边栏<code>配置</code>。继续修改Jenkins工程。</p>
+<p>1、General选项卡</p>
+<p>添加一个<code>Git Parameter</code>，用来显示Android工程的分支列表，注意<code>已选仓库</code> 要与Andorid Git关联(与前面写的操作一致)。</p>
+<p>2、源码管理选项卡</p>
+<p>添加一个<code>Git</code>，配置好Android工程的Git仓库(与前面写的操作一致)。</p>
+<p>3、构建选项卡 </p>
+<ul>
+<li>添加一个<code>Execute shll</code>，这个shell主要将上面的AAR拷贝到Android的libs下，并将它提交AndroidGit仓库。</li>
+</ul>
+<p><img src="/../res/2020-10-19-Mac%E4%B8%8A%E9%85%8D%E7%BD%AEJenkins%E4%B8%BAUnity%E5%AF%BC%E5%87%BAAAR%E3%80%81APK/7.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>在增加一个<code>Execute shll</code>，用于打包安卓APK，先清理上次编译的缓存，利用<code>./gradlew build</code>打包<code>debug</code>、<code>release</code> 2个APK，然后将APK拷贝到FTP服务器上。(<code>gradlew assembleDebu</code> debug包、<code>gradlew assembleRelease</code> release包)</li>
+</ul>
+<p><img src="/../res/2020-10-19-Mac%E4%B8%8A%E9%85%8D%E7%BD%AEJenkins%E4%B8%BAUnity%E5%AF%BC%E5%87%BAAAR%E3%80%81APK/8.png" srcset="/img/loading.gif" lazyload></p>
+<p>返回执行构建，在日志中就就能看到APK地址输出了。</p>
+<p><img src="/../res/2020-10-19-Mac%E4%B8%8A%E9%85%8D%E7%BD%AEJenkins%E4%B8%BAUnity%E5%AF%BC%E5%87%BAAAR%E3%80%81APK/9.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h2><ul>
+<li>为了方便测试导出unity工程AAR和Android工程APK的Jenkins流程，将这2步骤放在同一个Jenkins工作流构建。这2步骤是可以分成2个Jenkins工作流来构建，Unity工作流负责导出AAR上传，Android工作流负责下载AAR导出APK。</li>
+<li>Jenkins Git+Shll(或者调用执行本地python)的配合可以完成很多自动化工作流。</li>
+</ul>
+<p>笔记参考文献</p>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://www.jenkins.io/zh/doc/">https://www.jenkins.io/zh/doc</a></li>
+<li><a target="_blank" rel="noopener" href="https://plugins.jenkins.io/git/">https://plugins.jenkins.io/git</a></li>
+<li><a target="_blank" rel="noopener" href="https://plugins.jenkins.io/unity3d-plugin/">https://plugins.jenkins.io/unity3d-plugin</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.gradle.org/current/userguide/command_line_interface.html">Command-Line Interface</a></li>
+</ol>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Unity/" class="category-chain-item">Unity</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Jenkins/" class="print-no-link">#Jenkins</a>
+      
+        <a href="/tags/AAR/" class="print-no-link">#AAR</a>
+      
+        <a href="/tags/APK/" class="print-no-link">#APK</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Mac上配置Jenkins为Unity导出AAR、APK</div>
+      <div>https://www.sszyc8.com/72419b73d728/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>s2</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年5月13日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/5596cfd2e46f/" title="记录一些实用的网站">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">记录一些实用的网站</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/e7c91441380a/" title="Hello World">
+                        <span class="hidden-mobile">Hello World</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      京ICP备17016547号-2
+    </a>
+  </span>
+  
+</div>
+
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
