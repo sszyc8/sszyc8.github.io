@@ -54,6 +54,35 @@
   
   
   <entry>
+    <title>记录Blog迭代</title>
+    <link href="/e1c93346b462/"/>
+    <url>/e1c93346b462/</url>
+    
+    <content type="html"><![CDATA[<hr><!-- 发布状态: 是 --><!-- 文章ID: 1577808000 --><ul><li>标题: <code>记录Blog迭代</code></li><li>分类: <code>网站</code></li><li>标签: <code>Golang</code> | <code>JavaScript</code> | <code>HTML</code></li><li>创建时间: <code>2020-01-01</code></li><li>简介: <code>记录Blog事迹、规划、更新内容等信息。</code></li></ul><hr><h2 id="🍡-前言"><a href="#🍡-前言" class="headerlink" title="🍡 前言"></a>🍡 前言</h2><blockquote><p>前端来源于WordPress主题 <a href="https://doc.flyhigher.top/mdx/zh-CN/">MDx</a>，在MDX主题基础上改为HTML，后端使用Golang语言gin框架开发</p></blockquote><blockquote><p>由于是业余时间自学Golang和网页前端，暂不做开源计划了。喜欢这款主题的可以去体验WordPress版本<a href="https://doc.flyhigher.top/mdx/zh-CN/">MDx</a>。</p></blockquote><h2 id="🔖-计划清单"><a href="#🔖-计划清单" class="headerlink" title="🔖 计划清单"></a>🔖 计划清单</h2><ul>    <li class="task-list-item"><input type="checkbox" disabled checked > MD文件的读取、渲染功能 </li>    <li class="task-list-item"><input type="checkbox" disabled checked > 文章分享功能 </li>    <li class="task-list-item"><input type="checkbox" disabled checked > 基于Sqlite3单向留言功能 </li>    <li class="task-list-item"><input type="checkbox" disabled checked > 站点HTTPS支持 </li>    <li class="task-list-item"><input type="checkbox" disabled checked > 站点统计 </li>    <li class="task-list-item"><input type="checkbox" disabled > 同步往期Blog笔记内容 </li>    <li class="task-list-item"><input type="checkbox" disabled > 留言回复功能 </li>    <li class="task-list-item"><input type="checkbox" disabled > 赞赏模块功能 </li>    <li class="task-list-item"><input type="checkbox" disabled > 游戏作品展示栏功能</li>    <li class="task-list-item"><input type="checkbox" disabled > 给予Git的MD新增更新功能 </li>    <li class="task-list-item"><input type="checkbox" disabled > HTML模版优化 （持续进行中）</li>    <li class="task-list-item"><input type="checkbox" disabled > Golang后台代码优化 （持续进行中）</li>    <li class="task-list-item"><input type="checkbox" disabled > Blog开源计划</li></ul><h2 id="🛠-v1-0-4版本-20210711"><a href="#🛠-v1-0-4版本-20210711" class="headerlink" title="🛠 v1.0.4版本 - 20210711"></a>🛠 v1.0.4版本 - 20210711</h2><ol><li>优化页签分类。</li><li>更新第三方开源库，并且调整目录结构。</li><li>增加百度统计。</li><li>文章版权样式调整。</li><li>优化首页预加载图。</li><li>优化后端代码(参考<a href="https://github.com/GoAdminGroup/go-admin">go-admin</a>部分结构)。</li></ol><h2 id="🛠-v1-0-3版本-20210522"><a href="#🛠-v1-0-3版本-20210522" class="headerlink" title="🛠 v1.0.3版本 - 20210522"></a>🛠 v1.0.3版本 - 20210522</h2><ol><li>增加HTTPS支持。</li><li>修复后端文章检索接口失效BUG。</li><li>修复前端文章目录失效BUG。</li><li>优化后端代码。</li></ol><h2 id="🛠-v1-0-2版本-20210417"><a href="#🛠-v1-0-2版本-20210417" class="headerlink" title="🛠 v1.0.2版本 - 20210417"></a>🛠 v1.0.2版本 - 20210417</h2><ol><li>优化后端部分API改为restful风格。</li><li>优化文章、留言等功能前后端分离处理。</li><li>优化前端URL，去除参数形式。</li><li>剔除一些冗余的接口。</li><li>剔除一些分享功能。</li></ol><h2 id="🛠-v1-0-1版本-20210227"><a href="#🛠-v1-0-1版本-20210227" class="headerlink" title="🛠 v1.0.1版本 - 20210227"></a>🛠 v1.0.1版本 - 20210227</h2><ol><li>增加远程md文件格式文章显示。</li><li>增加基于Sqlite3单向留言功能。</li><li>增加文章略缩图、标题图检索功能。</li><li>修正MD文章中代码段展现BUG。</li><li>修正404页面展示错误BUG。</li><li>优化MD文件加载时间。</li></ol><h2 id="🛠-v1-0-0版本-20201205"><a href="#🛠-v1-0-0版本-20201205" class="headerlink" title="🛠 v1.0.0版本 - 20201205"></a>🛠 v1.0.0版本 - 20201205</h2><ol><li>增加MD文章更新。</li><li>静态md文件格式文章显示。</li></ol>]]></content>
+    
+    
+    <categories>
+      
+      <category>网站</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Golang</tag>
+      
+      <tag>JavaScript</tag>
+      
+      <tag>HTML</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>记录一些实用的网站</title>
     <link href="/5596cfd2e46f/"/>
     <url>/5596cfd2e46f/</url>
@@ -73,6 +102,19 @@
       <tag>网站</tag>
       
     </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="/e7c91441380a/"/>
+    <url>/e7c91441380a/</url>
+    
+    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo new <span class="hljs-string">&quot;My New Post&quot;</span><br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo server<br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo generate<br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo deploy<br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
+    
+    
     
   </entry>
   
@@ -100,48 +142,6 @@
       <tag>AAR</tag>
       
       <tag>APK</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>Hello World</title>
-    <link href="/e7c91441380a/"/>
-    <url>/e7c91441380a/</url>
-    
-    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo new <span class="hljs-string">&quot;My New Post&quot;</span><br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo server<br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo generate<br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo deploy<br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
-    
-    
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>记录Blog迭代</title>
-    <link href="/e1c93346b462/"/>
-    <url>/e1c93346b462/</url>
-    
-    <content type="html"><![CDATA[<hr><!-- 发布状态: 是 --><!-- 文章ID: 1577808000 --><ul><li>标题: <code>记录Blog迭代</code></li><li>分类: <code>网站</code></li><li>标签: <code>Golang</code> | <code>JavaScript</code> | <code>HTML</code></li><li>创建时间: <code>2020-01-01</code></li><li>简介: <code>记录Blog事迹、规划、更新内容等信息。</code></li></ul><hr><h2 id="🍡-前言"><a href="#🍡-前言" class="headerlink" title="🍡 前言"></a>🍡 前言</h2><blockquote><p>前端来源于WordPress主题 <a href="https://doc.flyhigher.top/mdx/zh-CN/">MDx</a>，在MDX主题基础上改为HTML，后端使用Golang语言gin框架开发</p></blockquote><blockquote><p>由于是业余时间自学Golang和网页前端，暂不做开源计划了。喜欢这款主题的可以去体验WordPress版本<a href="https://doc.flyhigher.top/mdx/zh-CN/">MDx</a>。</p></blockquote><h2 id="🔖-计划清单"><a href="#🔖-计划清单" class="headerlink" title="🔖 计划清单"></a>🔖 计划清单</h2><ul>    <li class="task-list-item"><input type="checkbox" disabled checked > MD文件的读取、渲染功能 </li>    <li class="task-list-item"><input type="checkbox" disabled checked > 文章分享功能 </li>    <li class="task-list-item"><input type="checkbox" disabled checked > 基于Sqlite3单向留言功能 </li>    <li class="task-list-item"><input type="checkbox" disabled checked > 站点HTTPS支持 </li>    <li class="task-list-item"><input type="checkbox" disabled checked > 站点统计 </li>    <li class="task-list-item"><input type="checkbox" disabled > 同步往期Blog笔记内容 </li>    <li class="task-list-item"><input type="checkbox" disabled > 留言回复功能 </li>    <li class="task-list-item"><input type="checkbox" disabled > 赞赏模块功能 </li>    <li class="task-list-item"><input type="checkbox" disabled > 游戏作品展示栏功能</li>    <li class="task-list-item"><input type="checkbox" disabled > 给予Git的MD新增更新功能 </li>    <li class="task-list-item"><input type="checkbox" disabled > HTML模版优化 （持续进行中）</li>    <li class="task-list-item"><input type="checkbox" disabled > Golang后台代码优化 （持续进行中）</li>    <li class="task-list-item"><input type="checkbox" disabled > Blog开源计划</li></ul><h2 id="🛠-v1-0-4版本-20210711"><a href="#🛠-v1-0-4版本-20210711" class="headerlink" title="🛠 v1.0.4版本 - 20210711"></a>🛠 v1.0.4版本 - 20210711</h2><ol><li>优化页签分类。</li><li>更新第三方开源库，并且调整目录结构。</li><li>增加百度统计。</li><li>文章版权样式调整。</li><li>优化首页预加载图。</li><li>优化后端代码(参考<a href="https://github.com/GoAdminGroup/go-admin">go-admin</a>部分结构)。</li></ol><h2 id="🛠-v1-0-3版本-20210522"><a href="#🛠-v1-0-3版本-20210522" class="headerlink" title="🛠 v1.0.3版本 - 20210522"></a>🛠 v1.0.3版本 - 20210522</h2><ol><li>增加HTTPS支持。</li><li>修复后端文章检索接口失效BUG。</li><li>修复前端文章目录失效BUG。</li><li>优化后端代码。</li></ol><h2 id="🛠-v1-0-2版本-20210417"><a href="#🛠-v1-0-2版本-20210417" class="headerlink" title="🛠 v1.0.2版本 - 20210417"></a>🛠 v1.0.2版本 - 20210417</h2><ol><li>优化后端部分API改为restful风格。</li><li>优化文章、留言等功能前后端分离处理。</li><li>优化前端URL，去除参数形式。</li><li>剔除一些冗余的接口。</li><li>剔除一些分享功能。</li></ol><h2 id="🛠-v1-0-1版本-20210227"><a href="#🛠-v1-0-1版本-20210227" class="headerlink" title="🛠 v1.0.1版本 - 20210227"></a>🛠 v1.0.1版本 - 20210227</h2><ol><li>增加远程md文件格式文章显示。</li><li>增加基于Sqlite3单向留言功能。</li><li>增加文章略缩图、标题图检索功能。</li><li>修正MD文章中代码段展现BUG。</li><li>修正404页面展示错误BUG。</li><li>优化MD文件加载时间。</li></ol><h2 id="🛠-v1-0-0版本-20201205"><a href="#🛠-v1-0-0版本-20201205" class="headerlink" title="🛠 v1.0.0版本 - 20201205"></a>🛠 v1.0.0版本 - 20201205</h2><ol><li>增加MD文章更新。</li><li>静态md文件格式文章显示。</li></ol>]]></content>
-    
-    
-    <categories>
-      
-      <category>网站</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>Golang</tag>
-      
-      <tag>JavaScript</tag>
-      
-      <tag>HTML</tag>
       
     </tags>
     
