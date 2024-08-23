@@ -1,12 +1,10 @@
-<!doctype html>
-<html lang="zh-CN" data-theme="light">
+<!DOCTYPE html>
+<html>
 
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="generator" content="VuePress 2.0.0-rc.14" />
-  <meta name="theme" content="VuePress Theme Hope 2.0.0-rc.52" />
-
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin1111</title>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-GM7Z6XHRTF"></script>
   <script>
@@ -15,29 +13,122 @@
     gtag('js', new Date());
 
     gtag('config', 'G-GM7Z6XHRTF');
+    gtag('event', 'conversion', {
+      'value': 99.99,
+      'currency': 'USD',
+      'transaction_id': '123123sadas111'
+    });
 
-    setTimeout(() => {
-      gtag('event', 'purchase', {
-        currency: 'BRL',
-        value: 12,
-        transaction_id: 'checkData.orderIdaaaaa',
-        items: [
-          {
-            item_id: `${1231231}`,
-            item_name: 'itemName'
-          }
-        ]
-      });
+    gtag("event", "purchase", {
+      transaction_id: "T_12345",
+      // Sum of (price * quantity) for all items.
+      value: 72.05,
+      tax: 3.60,
+      shipping: 5.99,
+      currency: "BRL",
+      coupon: "SUMMER_SALE",
+      items: [
+        {
+          item_id: "SKU_12345",
+          item_name: "Stan and Friends Tee",
+          affiliation: "Google Merchandise Store",
+          coupon: "SUMMER_FUN",
+          discount: 2.22,
+          index: 0,
+          item_brand: "Google",
+          item_category: "Apparel",
+          item_category2: "Adult",
+          item_category3: "Shirts",
+          item_category4: "Crew",
+          item_category5: "Short sleeve",
+          item_list_id: "related_products",
+          item_list_name: "Related Products",
+          item_variant: "green",
+          location_id: "ChIJIQBpAG2ahYAR_6128GcTUEo",
+          price: 10.01,
+          quantity: 3
+        },
+        {
+          item_id: "SKU_12346",
+          item_name: "Google Grey Women's Tee",
+          affiliation: "Google Merchandise Store",
+          coupon: "SUMMER_FUN",
+          discount: 3.33,
+          index: 1,
+          item_brand: "Google",
+          item_category: "Apparel",
+          item_category2: "Adult",
+          item_category3: "Shirts",
+          item_category4: "Crew",
+          item_category5: "Short sleeve",
+          item_list_id: "related_products",
+          item_list_name: "Related Products",
+          item_variant: "gray",
+          location_id: "ChIJIQBpAG2ahYAR_6128GcTUEo",
+          price: 21.01,
+          promotion_id: "P_12345",
+          promotion_name: "Summer Sale",
+          quantity: 2
+        }]
+    });
 
-      gtag('event', 'conversion', { 'value': 500, 'currency': 'BRL', 'transaction_id': 'test_orderId_whaa' });
-    }, 10000);
+    gtag("event", "conversion", {
+      transaction_id: "T_12345111",
+      // Sum of (price * quantity) for all items.
+      value: 72.05,
+      tax: 3.60,
+      shipping: 5.99,
+      currency: "BRL",
+      coupon: "SUMMER_SALE",
+      items: [
+        {
+          item_id: "SKU_12345",
+          item_name: "Stan and Friends Tee",
+          affiliation: "Google Merchandise Store",
+          coupon: "SUMMER_FUN",
+          discount: 2.22,
+          index: 0,
+          item_brand: "Google",
+          item_category: "Apparel",
+          item_category2: "Adult",
+          item_category3: "Shirts",
+          item_category4: "Crew",
+          item_category5: "Short sleeve",
+          item_list_id: "related_products",
+          item_list_name: "Related Products",
+          item_variant: "green",
+          location_id: "ChIJIQBpAG2ahYAR_6128GcTUEo",
+          price: 10.01,
+          quantity: 3
+        },
+        {
+          item_id: "SKU_12346",
+          item_name: "Google Grey Women's Tee",
+          affiliation: "Google Merchandise Store",
+          coupon: "SUMMER_FUN",
+          discount: 3.33,
+          index: 1,
+          item_brand: "Google",
+          item_category: "Apparel",
+          item_category2: "Adult",
+          item_category3: "Shirts",
+          item_category4: "Crew",
+          item_category5: "Short sleeve",
+          item_list_id: "related_products",
+          item_list_name: "Related Products",
+          item_variant: "gray",
+          location_id: "ChIJIQBpAG2ahYAR_6128GcTUEo",
+          price: 21.01,
+          promotion_id: "P_12345",
+          promotion_name: "Summer Sale",
+          quantity: 2
+        }]
+    });
   </script>
-
 </head>
 
 <body>
-
-  <p>3</p>
+  <h1>4</h1>
 </body>
 
 </html>
