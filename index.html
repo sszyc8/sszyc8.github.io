@@ -17,7 +17,6 @@
 
     setTimeout(() => {
       gtag('event', 'purchase', {
-        send_to: 'AW-756300865/6L2JCLar-MsZEMH40OgC',
         currency: 'BRL',
         value: 12,
         transaction_id: 'checkData.orderId',
@@ -28,6 +27,8 @@
           }
         ]
       });
+
+      gtag('event', 'conversion', { 'value': 500, 'currency': 'BRL', 'transaction_id': 'test_orderId_wh' });
     }, 10000);
   </script>
 
@@ -35,7 +36,7 @@
 
 <body>
 
-  <p>1</p>
+  <p>2</p>
 </body>
 
 </html>
