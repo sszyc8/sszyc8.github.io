@@ -1,20 +1,16 @@
 {
-  "name": "@vben/backend-mock",
-  "version": "0.0.1",
-  "description": "",
-  "private": true,
-  "license": "MIT",
-  "author": "",
+  "name": "sszyc8.github.io",
+  "version": "1.0.0",
+  "main": "index.js",
   "scripts": {
-    "build": "nitro build",
-    "start": "nitro dev"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
   "dependencies": {
-    "jsonwebtoken": "^9.0.2",
-    "nitropack": "^2.9.7"
-  },
-  "devDependencies": {
-    "@types/jsonwebtoken": "^9.0.6",
-    "h3": "^1.12.0"
+    "cors": "^2.8.5",
+    "express": "^4.19.2"
   }
 }
