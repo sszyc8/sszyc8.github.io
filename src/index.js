@@ -57,6 +57,6 @@ app.post('/newsList', (req, res) => {
 })
 
 
-app.listen(3000, () => {
-    console.log('server success,本地服务器已经启动在3000端口!');
+app.listen(80, () => {
+    console.log('server success,本地服务器已经启动在80端口!');
 })
