@@ -18,6 +18,9 @@ jobs:
     - name: Use Node.js
       uses: actions/setup-node@v4
 
+    - name: Install p2m
+      run: npm install pm2 -g
+
     - name: Start Install
       run: npm install
 
